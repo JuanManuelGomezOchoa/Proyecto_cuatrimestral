@@ -1,9 +1,6 @@
 import { Schema, model } from "mongoose";
+import { IOption } from "../GlobalTypes";
 
-interface IOption{
-    title: string;
-    questionId: Schema.Types.ObjectId | string;
-}
 
 const OptionSchema = new Schema<IOption>({
         title:{
@@ -12,7 +9,7 @@ const OptionSchema = new Schema<IOption>({
         },
         questionId:{
             type: Schema.Types.ObjectId,
-            ref:"options",
+            ref:"questions",
             required:true
         }
 
