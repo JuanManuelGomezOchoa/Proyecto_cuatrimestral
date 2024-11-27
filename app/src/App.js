@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
-
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const App = () => {
   const [data, setData] = useState({});
+
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     e.preventDefault();
@@ -12,8 +15,15 @@ const App = () => {
     setData(loginData)
   }
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     //Peticion a la DB
+    try {
+      await axios.post("http://localhost:4000/users/login/", data)
+      alert("La informacion proporcionada es correcta")
+      navigate("/list-q")
+  } catch (error) {
+      alert("La informacion proporcionada es incorrecta")
+  }
     console.log(data)
   }
 
