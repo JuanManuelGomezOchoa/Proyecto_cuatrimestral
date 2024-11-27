@@ -18,8 +18,10 @@ const App = () => {
   const onSubmit = async () => {
     //Peticion a la DB
     try {
-      await axios.post("http://localhost:4000/users/login/", data)
-      alert("La informacion proporcionada es correcta")
+     const res = await axios.post("http://localhost:4000/users/login/", data)
+     const user = res.data.user
+     user.logined = true
+     localStorage.user = JSON.stringify(user) 
       navigate("/list-q")
   } catch (error) {
       alert("La informacion proporcionada es incorrecta")

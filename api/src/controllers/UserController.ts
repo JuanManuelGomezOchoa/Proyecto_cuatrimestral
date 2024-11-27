@@ -61,11 +61,11 @@ export const singIn = async (req: Request, res: Response): Promise<any> => {
         if (!user) {
             return res.status(404).json({ msg: "El usuario no existe" });
         }
-
+        
         // Devolver un token
         const token = jwt.sign(JSON.stringify(user), "shhh");
 
-        return res.status(200).json({ msg: "El usuario si existe", token });
+        return res.status(200).json({ msg: "El usuario si existe", token, user});
     } catch (error) {
         console.log(error);
         return res.status(500).json({ msg: "Hubo un error al intentar iniciar sesion" });
