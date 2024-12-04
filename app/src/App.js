@@ -22,7 +22,12 @@ const App = () => {
      const user = res.data.user
      user.logined = true
      localStorage.user = JSON.stringify(user) 
+     if (user.rol == "administrator"){
+      navigate("/home")
+     }else{
       navigate("/list-q")
+     }
+      
   } catch (error) {
       alert("La informacion proporcionada es incorrecta")
   }
